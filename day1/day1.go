@@ -1,10 +1,17 @@
 package day1
 
 import (
+	"fmt"
 	"slices"
 )
 
-func Part1(list1 []int, list2 []int) int {
+var ErrNonMatchingListLengths = fmt.Errorf("list lengths don't match")
+
+func Part1(list1 []int, list2 []int) (int, error) {
+	if len(list1) != len(list2) {
+		return 0, ErrNonMatchingListLengths
+	}
+
 	sum := 0
 
 	slices.Sort(list1)
@@ -18,7 +25,7 @@ func Part1(list1 []int, list2 []int) int {
 		}
 	}
 
-	return sum
+	return sum, nil
 }
 
 func Part2(list1 []int, list2 []int) int {
